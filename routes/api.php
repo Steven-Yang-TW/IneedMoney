@@ -18,8 +18,15 @@ use App\Http\Controllers\Api\AuthController;
 //    return $request->user();
 //});
 
-Route::group(['prefix'=>'auth'], function() {
-    Route::get('/', [AuthController::class, 'me'])->name('me');
+Route::group([
+    'prefix'=>'auth'
+], function() {
+
+    Route::get('me', [AuthController::class, 'me'])->name('me');
+    // 使用者登入
     Route::post('login', [AuthController::class, 'login'])->name('login');
+    // 使用者登出
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+    // 使用者註冊
+    Route::post('register', [AuthController::class, 'register'])->name('register');
 });

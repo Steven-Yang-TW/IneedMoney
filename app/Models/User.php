@@ -60,4 +60,13 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    /**
+     * 帳號停用
+     * @return bool
+     */
+    public function isDisable()
+    {
+        return (string)$this->status == 0;
+    }
 }

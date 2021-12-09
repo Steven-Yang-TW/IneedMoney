@@ -61,6 +61,8 @@ class ErrorResource extends JsonResource
         $apiCode = config('code');
 
         switch ($this->code) {
+            case $apiCode['SYSTEM.PERMISSION_DENIED']:
+            case $apiCode['SYSTEM.NOT_LOGGED_IN']:
             case $apiCode['SYSTEM.API_NOT_EXIST']:
             case $apiCode['SYSTEM.FAILED']:
                 return $response->setStatusCode($this->code);

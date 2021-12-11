@@ -1,0 +1,21 @@
+<?php
+namespace DummyNamespace;
+
+use Prettus\Repository\Eloquent\BaseRepository;
+
+/**
+ * Class DummyClass
+ * @package DummyNamespace
+ */
+class DummyClass extends BaseRepository
+{
+    /**
+     * 指定的model
+     *
+     * @return string
+     */
+    public function model()
+    {
+        // return <model location>
+    }
+}

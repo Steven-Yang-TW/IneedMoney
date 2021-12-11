@@ -39,9 +39,22 @@ trait LogTrait
 
             'exception' => $this->formatException(),
         ];
+
+        # 寫成實體log，看看是否改成queue
+        logs($this->logDriver)->info(json_encode($log, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
     }
 
     private function formatException()
     {
+        if (blank($this->exception)) {
+            return [];
+        }
+
+        return [
+            'exception' => get_class($this->exception),
+            'file'      => $this->exception->getFile(),
+            'line'      => $this->exception->getLine(),
+            'msg'       => $this->exception->getMessage(),
+        ];
     }
 }

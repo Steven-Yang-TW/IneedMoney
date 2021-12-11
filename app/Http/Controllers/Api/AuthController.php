@@ -42,7 +42,9 @@ class AuthController extends Controller
             return new LoginResource(['token' => $token]);
 
         } catch (JWTException $exception) {
-            return response()->json(['error' => 'Token 建立無效'], 500);
+            return new ErrorResource($exception->getMessage(), $exception);
+        } catch (\Exception $exception) {
+            return new ErrorResource('SYSTEM.FAILED', $exception);
         }
     }
 

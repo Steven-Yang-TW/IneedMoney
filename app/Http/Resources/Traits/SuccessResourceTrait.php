@@ -8,6 +8,8 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 trait SuccessResourceTrait
 {
+    use LogTrait;
+
     private $logDriver = 'admin_api_info';
 
     /**
@@ -28,6 +30,8 @@ trait SuccessResourceTrait
     public function toResponse($request)
     {
         $response = parent::toResponse($request);
+
+        $this->saveLog($response);
 
         return $response;
     }

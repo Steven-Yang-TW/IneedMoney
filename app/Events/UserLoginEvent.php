@@ -23,12 +23,12 @@ class UserLoginEvent
     public function __construct(User $user, Request $request)
     {
         $this->info = [
-            'user_id'       => $user->id,
-            'ip'            => $request->ip(),
-            'url'           => $request->url(),
-            'login_at'      => now()->toDateTimeString(),
-            'auth_token'    => TraceInfo::getAuthToken(),
-            'user_agent'    => $request->userAgent(),
+            'user_id'    => $user->id,
+            'ip'         => $request->ip(),
+            'url'        => $request->url(),
+            'login_at'   => now()->toDateTimeString(),
+            'auth_token' => TraceInfo::getAuthToken(),
+            'user_agent' => $request->userAgent(),
         ];
     }
 }

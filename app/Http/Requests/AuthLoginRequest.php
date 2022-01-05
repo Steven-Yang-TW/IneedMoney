@@ -13,16 +13,16 @@ class AuthLoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|string',
-            'password' => 'required|string',
+            'email'     => 'required|string',
+            'password'  => 'required|string',
         ];
     }
 
     public function messages()
     {
         return [
-            'email.*' => 'AUTH.LOGIN.INVALID_EMAIL',
-            'password.*' => 'AUTH.LOGIN.INVALID_PASSWORD',
+            'email.*'       => 'AUTH.LOGIN.INVALID_EMAIL',
+            'password.*'    => 'AUTH.LOGIN.INVALID_PASSWORD',
         ];
     }
 }

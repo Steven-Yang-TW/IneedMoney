@@ -3,13 +3,16 @@
 namespace App\Http\Controllers\Api;
 
 use App\Events\UserLoginEvent;
+use App\Exceptions\ApiErrorException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AuthLoginRequest;
+use App\Http\Requests\AuthRegisterRequest;
 use App\Http\Resources\ErrorResource;
 use App\Http\Resources\LoginResource;
+use App\Http\Resources\RegisterResource;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Exceptions\JWTException;
-use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 
 class AuthController extends Controller
@@ -19,6 +22,10 @@ class AuthController extends Controller
         $this->middleware('auth:api')->except('login', 'register');
     }
 
+    /**
+     * @param AuthLoginRequest $request
+     * @return ErrorResource|LoginResource
+     */
     public function login(AuthLoginRequest $request)
     {
         $validation = $request->only(['email', 'password']);
@@ -48,28 +55,29 @@ class AuthController extends Controller
         }
     }
 
-    public function register(Request $request)
+    /**
+     * @param AuthRegisterRequest $request
+     * @return ErrorResource|RegisterResource
+     */
+    public function register(AuthRegisterRequest $request)
     {
-        $validation = Validator::make($request->all(), [
-            'name' => 'required|string|between:2,100',
-            'email' => 'required|string|email|max:100|unique:users',
-            'password' => 'required|string|confirmed|min:6',
-            'password_confirmation' => 'required|min:6|same:password',
-        ]);
+        try {
+            # 寫入資料庫
+            $user = User::create(array_merge(
+                $request->all(),
+                ['password' => bcrypt($request->password)]
+            ));
 
-        if($validation->failed()){
-            return response()->json($validation->errors()->toJson(), 400);
+            # 登入拿取token
+            $validation = $request->only(['email', 'password']);
+            $token = auth()->guard('api')->attempt($validation);
+
+            return new RegisterResource(['token' => $token]);
+        } catch(ApiErrorException $exception) {
+            return new ErrorResource($exception->getMessage());
+        } catch(\Exception $exception) {
+            return new ErrorResource('SYSTEM.FAILED', $exception);
         }
-
-        $user = User::create(array_merge(
-            $validation->validated(),
-            ['password' => bcrypt($request->password)]
-        ));
-
-        return response()->json([
-            'messages' => 'User successfully registered',
-            'user' => $user,
-        ], 201);
     }
 
     public function me()

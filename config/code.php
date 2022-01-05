@@ -13,4 +13,10 @@ return [
     'AUTH.LOGIN.INVALID_EMAIL'      => 10001101, // 登入EMAIL格式錯誤
     'AUTH.LOGIN.INVALID_PASSWORD'   => 10001102, // 登入password格式錯誤
     'AUTH.LOGIN.AUTH_FAILED'        => 10001201, // 登入驗證失敗
+
+    # Auth.REGISTER(10002)
+    'AUTH.REGISTER.INVALID_NAME'                    => 10002101,
+    'AUTH.REGISTER.INVALID_EMAIL'                   => 10002102,
+    'AUTH.REGISTER.INVALID_PASSWORD'                => 10002103,
+    'AUTH.REGISTER.INVALID_PASSWORD_CONFIRMATION'   => 10002104,
 ];

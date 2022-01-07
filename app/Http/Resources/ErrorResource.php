@@ -35,7 +35,7 @@ class ErrorResource extends JsonResource
     {
         return [
             'code' => $this->code,
-            'msg'  => '',
+            'msg'  => $this->resource,
         ];
     }
 

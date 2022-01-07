@@ -2,20 +2,12 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+/**
+ * @property mixed password
+ */
 
 class AuthRegisterRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return false;
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -24,7 +16,20 @@ class AuthRegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'                  => 'required|string|between:2,100',
+            'email'                 => 'required|string|email|max:100|unique:users',
+            'password'              => 'required|string|min:6|confirmed',
+            'password_confirmation' => 'required|min:6|same:password',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.*'                => 'AUTH.REGISTER.INVALID_NAME',
+            'email.*'               => 'AUTH.REGISTER.INVALID_EMAIL',
+            'password.*'            => 'AUTH.REGISTER.INVALID_PASSWORD',
+            'password_confirmation' => 'AUTH.REGISTER.INVALID_PASSWORD_CONFIRMATION'
         ];
     }
 }

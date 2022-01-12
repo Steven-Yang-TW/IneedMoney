@@ -1,10 +1,14 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import VueAxios from 'vue-axios';
+import axios from 'axios';
 
 import Home from './pages/Home.vue';
 import About from './pages/About.vue';
+import Login from './pages/Login.vue';
 
 Vue.use(VueRouter);
+Vue.use(VueAxios, axios);
 
 const router = new VueRouter({
   mode: 'history',
@@ -20,6 +24,11 @@ const router = new VueRouter({
       name: 'about',
       component: About
     },
+    {
+        path: '/login',
+        name: 'login',
+        component: Login
+    }
   ]
 });
 

@@ -24,6 +24,12 @@
               About
             </router-link>
           </li>
+
+          <li class="nav-item">
+            <router-link class="nav-link" data-toggle="collapse" :to="{ name: 'login' }">
+              Login
+            </router-link>
+          </li>
         </ul>
       </div>
     </nav>
@@ -36,10 +42,5 @@
 
 <script>
 export default {
-  watch: {
-    $route() {
-      $("#navbarCollapse").collapse("hide");
-    },
-  },
 };
 </script>

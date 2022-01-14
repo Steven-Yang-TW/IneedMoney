@@ -82,7 +82,7 @@ export default {
             .then(response => (
                 this.token = response.data.data.auth.token
             ))
-            .catch(err => console.log(err))
+            .catch(response => (console.log(response)))
             .finally(() => this.loading = false)
         }
     }

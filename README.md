@@ -35,3 +35,7 @@ php artisan make:repository <filename>
 - l5-repository (資料庫操作工具)
 - jenssegers/agent (客戶端檢測工具)
 - ext-json (json_decode時phpstorm不會報錯)
+
+
+## 網站路口
+[index] (localhost:8010/home)

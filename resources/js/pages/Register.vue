@@ -20,7 +20,7 @@
 
             <div class="form-floating">
                 <label for="floatingPasswordConfirm">PasswordConfirm</label>
-                <input type="password" class="form-control" id ="floatingPasswordConfirm" placeholder="PasswordConfirm" v-model="user.passwordconfirm">
+                <input type="password" class="form-control" id ="floatingPasswordConfirm" placeholder="PasswordConfirm" v-model="user.password_confirmation">
             </div>
 
             <button class="w-100 btn btn-lg btn-primary" type="submit">Sign Up</button>

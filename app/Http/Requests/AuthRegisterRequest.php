@@ -26,10 +26,10 @@ class AuthRegisterRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.*'                => 'AUTH.REGISTER.INVALID_NAME',
-            'email.*'               => 'AUTH.REGISTER.INVALID_EMAIL',
-            'password.*'            => 'AUTH.REGISTER.INVALID_PASSWORD',
-            'password_confirmation' => 'AUTH.REGISTER.INVALID_PASSWORD_CONFIRMATION'
+            'name.*'                    => 'AUTH.REGISTER.INVALID_NAME',
+            'email.*'                   => 'AUTH.REGISTER.INVALID_EMAIL',
+            'password.*'                => 'AUTH.REGISTER.INVALID_PASSWORD',
+            'password_confirmation.*'   => 'AUTH.REGISTER.INVALID_PASSWORD_CONFIRMATION'
         ];
     }
 }

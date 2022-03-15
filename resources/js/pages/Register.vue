@@ -5,7 +5,7 @@
 
             <div class="form-floating">
                 <label for="floatingName">name</label>
-                <input type="text" class="form-control" id="floatingName" placeholder="name@example.com" v-model="user.name">
+                <input type="text" class="form-control" id="floatingName" placeholder="Steven Yang" v-model="user.name">
             </div>
 
             <div class="form-floating">
@@ -20,11 +20,11 @@
 
             <div class="form-floating">
                 <label for="floatingPasswordConfirm">PasswordConfirm</label>
-                <input type="password" class="form-control" id ="floatingPasswordConfirm" placeholder="PasswordConfirm" v-model="user.passwordconfirm">
+                <input type="password" class="form-control" id ="floatingPasswordConfirm" placeholder="PasswordConfirm" v-model="user.password_confirmation">
             </div>
 
             <button class="w-100 btn btn-lg btn-primary" type="submit">Sign Up</button>
-            <p class="mt-5 mb-3 text-muted">&copy; 2021–2022</p>
+            <p class="mt-5 mb-3 text-muted">Copyright &copy; 2021–2022  All Rights Reserved Designed by ST&H workshop.</p>
         </form>
     </main>
 </template>

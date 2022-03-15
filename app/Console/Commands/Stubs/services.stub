@@ -1,0 +1,13 @@
+<?php
+namespace DummyNamespace;
+
+class DummyClass
+{
+    # 建構子
+    public function __construct()
+    {
+
+    }
+
+    # toDo function
+}

@@ -19,8 +19,7 @@
                 </label>
             </div>
             <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-            <p class="mt-5 mb-3 text-muted">&copy; 2021–2022</p>
-            你的token為： {{ token }}
+            <p class="mt-5 mb-5 text-muted">Copyright &copy; 2021–2022  All Rights Reserved Designed by ST&H workshop.</p>
         </form>
     </main>
 </template>
@@ -79,10 +78,15 @@ export default {
         userLogin() {
             this.axios
             .post('http://localhost:8010/api/auth/login', this.user)
-            .then(response => (
-                this.token = response.data.data.auth.token
-            ))
-            .catch(response => (console.log(response)))
+            .then((response) => {
+                this.token = response.data.data.auth.token;
+                window.localStorage.setItem('token', this.token);
+                return this.$router.push('/home');
+            })
+            .catch((error) => {
+                console.log(error);
+                this.error = true
+            })
             .finally(() => this.loading = false)
         }
     }

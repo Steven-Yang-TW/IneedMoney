@@ -1,52 +1,30 @@
 <template>
-  <div>
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-      <router-link :to="{ name: 'home' }" class="navbar-brand"
-        >Laravel-Vue SPA</router-link
-      >
-      <button
-        class="navbar-toggler"
-        data-toggle="collapse"
-        data-target="#navbarCollapse"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div id="navbarCollapse" class="collapse navbar-collapse">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <router-link class="nav-link" data-toggle="collapse" :to="{ name: 'home' }">
-                    Home
-                </router-link>
-            </li>
-
-            <li class="nav-item">
-                <router-link class="nav-link" data-toggle="collapse" :to="{ name: 'about' }">
-                    About
-                </router-link>
-            </li>
-
-            <li class="nav-item">
-                <router-link class="nav-link" data-toggle="collapse" :to="{ name: 'login' }">
-                    Login
-                </router-link>
-            </li>
-
-            <li class="nav-item">
-                <router-link class="nav-link" data-toggle="collapse" :to="{ name: 'register' }">
-                    Register
-                </router-link>
-            </li>
-        </ul>
-      </div>
-    </nav>
-
-    <div class="container">
-      <router-view></router-view>
-    </div>
-  </div>
+    <el-container>
+        <el-header>
+            <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" background-color="#545c64" text-color="#fff" text-size="36px" active-text-color="#ffd04b" router="true">
+                <el-menu-item index="/home">ST&H workshop</el-menu-item>
+                <el-menu-item v-for="(item, index) in navBar" :key="item.id" :index="item.component">{{ item.value }}</el-menu-item>
+            </el-menu>
+        </el-header>
+        <router-view></router-view>
+    </el-container>
 </template>
 
 <script>
 export default {
+    data() {
+        return {
+            navBar: [
+                {id: '1', value:"首頁", component:"home"},
+                {id: '2', value:"關於", component:"about"}
+            ]
+        }
+    },
+    computed: {
+        activeIndex() {
+            console.log(this.$route.path.replace('/',''))
+            return this.$route.path.replace('/','')
+        }
+    },
 };
 </script>
